@@ -1,0 +1,23 @@
+{
+  "name": "tourify",
+  "version": "1.0.0",
+  "bin" : { 
+    "tourify" : "./tourify.js" 
+  },
+  "description": "",
+  "main": "tourify.js",
+  "scripts": {
+    "start": "node tourify --input=examples/input.kml"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cianclarke/tourify"
+  },
+  "author": "Cian Clarke",
+  "license": "ISC",
+  "dependencies": {
+    "geolib": "^2.0.22",
+    "handlebars": "^4.0.6",
+    "yargs": "^6.6.0"
+  }
+}

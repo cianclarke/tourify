@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>    
+	<name> Line Animation Sample</name>  
+	<open>1</open>
+
+	<Style id="line-style">
+		<LineStyle>
+			<color>bf00aaff</color>  	<!-- this is the color of your path -->
+			<width>5</width>		<!-- this is the width of your path -->
+		</LineStyle>
+	</Style>	
+
+	<!-- this is the camera view  -->	
+  <LookAt>		
+    <longitude>{{start.latitude}}</longitude>
+    <latitude>{{start.longitude}}</latitude>
+    <tilt>0</tilt>
+    <roll>0</roll>
+    <range>{{start.range}}</range>
+    <heading>0</heading>
+    <altitudeMode>clampToGround</altitudeMode>
+  </LookAt>
+	
+<gx:Tour>
+	<name>Double-click here to start tour</name>
+	<gx:Playlist>
+
+         <gx:Wait> <gx:duration>1</gx:duration></gx:Wait> <!-- short pause at the beginning -->
+	 
+<!-- line animation -->
+    {{#each placemarks}}
+    <gx:AnimatedUpdate>
+			<Update>
+				<Change><Placemark targetId="{{@index}}"><visibility>1</visibility></Placemark></Change>
+			</Update>
+		</gx:AnimatedUpdate>		
+    <gx:Wait><gx:duration>{{../stepSize}}</gx:duration></gx:Wait>   <!-- this is the length of time between path segments coming on, longer time will be a slower animation -->	
+    {{/each}}
+<gx:Wait> <gx:duration>1</gx:duration></gx:Wait>
+	
+	</gx:Playlist>
+</gx:Tour>
+
+<!-- the tour ends here and the following is the line information -->
+
+	<Folder>
+		<name>Path segments</name>
+		
+		<Style>
+			<ListStyle>
+				<listItemType>checkHideChildren</listItemType>
+			</ListStyle>
+		</Style>
+		
+<!-- all new placemarks go here -->		
+		
+  {{#each placemarks}}
+    {{> placemark this id=@index }}
+  {{/each}}
+		
+	</Folder>
+  </Document>
+</kml>

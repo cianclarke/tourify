@@ -1,0 +1,10 @@
+<Placemark id="{{id}}">
+  <name>1</name><visibility>0</visibility>
+  <styleUrl>#line-style</styleUrl>
+  <LineString>
+    <tessellate>1</tessellate>
+    <coordinates>
+      {{start.latitude}},{{start.longitude}},{{start.altitude}} {{finish.latitude}},{{finish.longitude}},{{finish.altitude}}
+    </coordinates>
+  </LineString>
+</Placemark>
